@@ -1,7 +1,8 @@
 'use strict';
 const electron = require('electron');
-const {download} = require('electron-dl');
-const isDev = require('electron-is-dev');
+// const {download} = require('electron-dl');
+// const isDev = require('electron-is-dev');
+// isDev = false;
 
 const webContents = win => win.webContents || win.getWebContents();
 
@@ -16,8 +17,6 @@ function create(win, opts) {
 		const can = type => editFlags[`can${type}`] && hasText;
 
 		let menuTpl = [{
-			type: 'separator'
-		}, {
 			id: 'cut',
 			label: 'Cut',
 			// Needed because of macOS limitation:
@@ -37,41 +36,39 @@ function create(win, opts) {
 			role: editFlags.canPaste ? 'paste' : '',
 			enabled: editFlags.canPaste,
 			visible: props.isEditable
-		}, {
-			type: 'separator'
 		}];
 
-		if (props.mediaType === 'image') {
-			menuTpl = [{
-				type: 'separator'
-			}, {
-				id: 'save',
-				label: 'Save Image',
-				click() {
-					download(win, props.srcURL);
-				}
-			}, {
-				type: 'separator'
-			}];
-		}
+		// if (props.mediaType === 'image') {
+		// 	menuTpl = [{
+		// 		type: 'separator'
+		// 	}, {
+		// 		id: 'save',
+		// 		label: 'Save Image',
+		// 		click() {
+		// 			download(win, props.srcURL);
+		// 		}
+		// 	}, {
+		// 		type: 'separator'
+		// 	}];
+		// }
 
-		if (props.linkURL && props.mediaType === 'none') {
-			menuTpl = [{
-				type: 'separator'
-			}, {
-				id: 'copyLink',
-				label: 'Copy Link',
-				click() {
-					if (process.platform === 'darwin') {
-						electron.clipboard.writeBookmark(props.linkText, props.linkURL);
-					} else {
-						electron.clipboard.writeText(props.linkURL);
-					}
-				}
-			}, {
-				type: 'separator'
-			}];
-		}
+		// if (props.linkURL && props.mediaType === 'none') {
+		// 	menuTpl = [{
+		// 		type: 'separator'
+		// 	}, {
+		// 		id: 'copyLink',
+		// 		label: 'Copy Link',
+		// 		click() {
+		// 			if (process.platform === 'darwin') {
+		// 				electron.clipboard.writeBookmark(props.linkText, props.linkURL);
+		// 			} else {
+		// 				electron.clipboard.writeText(props.linkURL);
+		// 			}
+		// 		}
+		// 	}, {
+		// 		type: 'separator'
+		// 	}];
+		// }
 
 		if (opts.prepend) {
 			const result = opts.prepend(props, win);
@@ -89,23 +86,23 @@ function create(win, opts) {
 			}
 		}
 
-		if (opts.showInspectElement || (opts.showInspectElement !== false && isDev)) {
-			menuTpl.push({
-				type: 'separator'
-			}, {
-				id: 'inspect',
-				label: 'Inspect Element',
-				click() {
-					win.inspectElement(props.x, props.y);
+		// if (opts.showInspectElement || (opts.showInspectElement !== false && isDev)) {
+		// 	menuTpl.push({
+		// 		type: 'separator'
+		// 	}, {
+		// 		id: 'inspect',
+		// 		label: 'Inspect Element',
+		// 		click() {
+		// 			win.inspectElement(props.x, props.y);
 
-					if (webContents(win).isDevToolsOpened()) {
-						webContents(win).devToolsWebContents.focus();
-					}
-				}
-			}, {
-				type: 'separator'
-			});
-		}
+		// 			if (webContents(win).isDevToolsOpened()) {
+		// 				webContents(win).devToolsWebContents.focus();
+		// 			}
+		// 		}
+		// 	}, {
+		// 		type: 'separator'
+		// 	});
+		// }
 
 		// Apply custom labels for default menu items
 		if (opts.labels) {

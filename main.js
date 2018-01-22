@@ -8,6 +8,15 @@ const opn = require('opn');
 const path = require('path')
 const url = require('url')
 
+require('./electron-context-menu-master/index.js')({
+  prepend: (params, browserWindow) => [{
+    // label: 'Rainbow',
+    // Only show it when right-clicking images
+    visible: params.mediaType === 'input',
+    showInspectElement: false,
+  }]
+});
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
