@@ -14,7 +14,16 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({show: false,width: 1080, minWidth: 1080, height: 600, minHeight: 600})
+  mainWindow = new BrowserWindow({
+    show: false,
+    webPreferences: {
+      nodeIntegration:false,
+    },
+    width: 1080,
+    minWidth: 1080,
+    height: 800,
+    minHeight: 600
+  })
 
   mainWindow.maximize();
   mainWindow.show();
@@ -32,7 +41,7 @@ function createWindow () {
   });
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
