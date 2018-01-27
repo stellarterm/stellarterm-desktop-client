@@ -7,6 +7,7 @@ const opn = require('opn');
 
 const path = require('path')
 const url = require('url')
+var Menu = electron.Menu;
 
 require('./electron-context-menu-master/index.js')({
   prepend: (params, browserWindow) => [{
@@ -45,6 +46,29 @@ function createWindow () {
     event.preventDefault();
     opn(url);
   });
+
+    var template = [{
+      label: "Application",
+      submenu: [
+          { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
+          { type: "separator" },
+          { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+      ]}, {
+      label: "Edit",
+      submenu: [
+          { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+          { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+          { type: "separator" },
+          { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+          { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+          { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+          { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+      ]}
+  ];
+
+  // This menu isn't actually used. However, the hotkeys get used. This is how
+  // hotkeys for copy and paste are implemented.
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
