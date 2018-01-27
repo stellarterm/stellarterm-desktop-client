@@ -50,7 +50,7 @@ function createWindow () {
     var template = [{
       label: "Application",
       submenu: [
-          { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
+          { label: "StellarTerm.com", click: function() { opn('https://stellarterm.com/'); } },
           { type: "separator" },
           { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
       ]}, {
