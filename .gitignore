@@ -58,4 +58,5 @@ typings/
 .env
 .DS_Store
 release-builds
+github-release-notes.txt
 
