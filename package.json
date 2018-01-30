@@ -14,7 +14,7 @@
     "zipWin": "cd release-builds;zip -r stellarterm-win32-x64.zip StellarTerm-win32-x64/;",
     "zipLinux": "cd release-builds;zip -r stellarterm-linux-x64.zip StellarTerm-linux-x64/;",
     "hash": "cd release-builds;openssl dgst -sha256 stellarterm-osx.zip;echo;openssl dgst -sha256 stellarterm-win32-x64.zip;",
-    "clean": "rm -r release-builds/*"
+    "clean": "rm -rf release-builds/*"
   },
   "original_author": "GitHub",
   "original_license": "CC0-1.0",
