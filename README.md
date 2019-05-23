@@ -4,4 +4,4 @@ This is the [StellarTerm client](https://stellarterm.com/) now in a desktop app 
 
 To download, go to the [releases page](https://github.com/stellarterm/stellarterm-desktop-client/releases).
 
-![image](https://user-images.githubusercontent.com/5728307/35322035-adffc424-009d-11e8-8eb3-5101e6dd7d0e.png)
+![image](https://user-images.githubusercontent.com/47245891/58245332-366c2b80-7d5d-11e9-924d-5603279c5455.png)
