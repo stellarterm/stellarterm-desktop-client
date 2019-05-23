@@ -9,21 +9,21 @@
     "mac": "electron-packager . StellarTerm --overwrite --platform=darwin --arch=x64 --icon=stellarterm-logo.icns --prune=true --out=release-builds",
     "win": "electron-packager . StellarTerm --overwrite --asar --platform=win32 --arch=x64 --icon=stellarterm-logo.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='StellarTerm'",
     "linux": "electron-packager . StellarTerm --overwrite --asar=true --platform=linux --arch=x64 --icon=stellarterm-logo.png --prune=true --out=release-builds",
-    "zip": "npm run zipMac; npm run zipWin;",
+    "zip": "npm run zipMac; npm run zipWin; npm run zipLinux;",
     "zipMac": "cd release-builds/StellarTerm-darwin-x64; zip -r ../stellarterm-osx.zip StellarTerm.app;cd ..;",
     "zipWin": "cd release-builds;zip -r stellarterm-win32-x64.zip StellarTerm-win32-x64/;",
     "zipLinux": "cd release-builds;zip -r stellarterm-linux-x64.zip StellarTerm-linux-x64/;",
-    "hash": "cd release-builds;openssl dgst -sha256 stellarterm-osx.zip;echo;openssl dgst -sha256 stellarterm-win32-x64.zip;",
+    "hash": "cd release-builds;openssl dgst -sha256 stellarterm-osx.zip;echo;openssl dgst -sha256 stellarterm-win32-x64.zip;echo;openssl dgst -sha256 stellarterm-linux-x64.zip;",
     "clean": "rm -rf release-builds/*"
   },
   "original_author": "GitHub",
   "original_license": "CC0-1.0",
   "license": "Apache-2.0",
   "devDependencies": {
-    "electron": "~1.7.8",
-    "electron-packager": "^10.1.1"
+    "electron": "^5.0.1",
+    "electron-packager": "^13.1.1"
   },
   "dependencies": {
-    "opn": "^5.2.0"
+    "opn": "^6.0.0"
   }
 }

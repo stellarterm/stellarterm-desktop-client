@@ -12,4 +12,4 @@ printf '```\n' >> github-release-notes.txt
 
 cat github-release-notes.txt
 
-hub release create -d -f github-release-notes.txt -a release-builds/stellarterm-osx.zip -a release-builds/stellarterm-win32-x64.zip $ST_VVERSION
+hub release create -d -f github-release-notes.txt -a release-builds/stellarterm-osx.zip -a release-builds/stellarterm-win32-x64.zip -a release-builds/stellarterm-linux-x64.zip $ST_VVERSION
