@@ -6,6 +6,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "buildAll": "npm run mac; npm run win; npm run linux",
     "mac": "electron-packager . StellarTerm --overwrite --platform=darwin --arch=x64 --icon=stellarterm-logo.icns --prune=true --out=release-builds",
     "win": "electron-packager . StellarTerm --overwrite --asar --platform=win32 --arch=x64 --icon=stellarterm-logo.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='StellarTerm'",
     "linux": "electron-packager . StellarTerm --overwrite --asar=true --platform=linux --arch=x64 --icon=stellarterm-logo.png --prune=true --out=release-builds",
@@ -20,8 +21,8 @@
   "original_license": "CC0-1.0",
   "license": "Apache-2.0",
   "devDependencies": {
-    "electron": "^5.0.1",
-    "electron-packager": "^13.1.1"
+    "electron": "9.0.0",
+    "electron-packager": "14.2.1"
   },
   "dependencies": {
     "opn": "^6.0.0"

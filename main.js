@@ -19,6 +19,33 @@ require('./electron-context-menu-master/index.js')({
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+// close previous and open second instance with sep-7 modal (for windows)
+const gotTheLock = app.requestSingleInstanceLock();
+
+if (!gotTheLock) {
+    app.quit()
+} else {
+    app.on('second-instance', (event, argv) => {
+        // Someone tried to run a second instance, we should focus our window.
+        event.preventDefault();
+        link = argv[2];
+        if (app.isReady() && mainWindow) {
+            mainWindow.loadURL(url.format({
+                pathname: path.join(__dirname, 'index.html'),
+                protocol: 'file:',
+                slashes: true,
+                hash: link,
+            }));
+            if (mainWindow.isMinimized()) {
+                mainWindow.restore();
+            }
+            mainWindow.show();
+        }
+    });
+}
+
+
+
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
@@ -40,7 +67,8 @@ function createWindow() {
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
         slashes: true,
-        hash: link,
+        // process.argv url for launch app with sep-7 modal for windows
+        hash: link || process.argv[1],
     }));
 
 
@@ -83,7 +111,7 @@ function createWindow() {
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -116,10 +144,12 @@ app.on('activate', function () {
     }
 });
 
+// set protocol
 app.setAsDefaultProtocolClient('web+stellar');
 
 let link;
 
+// handler sep-7 url for macOS
 app.on('open-url', (event, data) => {
     event.preventDefault();
     link = data;
