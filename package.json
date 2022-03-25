@@ -21,7 +21,7 @@
   "original_license": "CC0-1.0",
   "license": "Apache-2.0",
   "devDependencies": {
-    "electron": "9.0.0",
+    "electron": "13.6.6",
     "electron-packager": "14.2.1"
   },
   "dependencies": {
